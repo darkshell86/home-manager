@@ -35,14 +35,64 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     htop
+    # Shell
+    bottom
+    eza
+    bat
+    bat-extras.prettybat
+    bat-extras.batwatch
+    bat-extras.batpipe
+    bat-extras.batman
+    bat-extras.batgrep
+    bat-extras.batdiff
+    broot
+    choose
+    du-dust
+    yazi
+    # Git
+    gh
+    gitui
+    # JavaScript
     nodejs
     bun
+    yarn
+    ripgrep
+    jq
+    fd
+    sd
+    vivid
+    tree-sitter
+    tre-command
+    tldr
+    k9s
+    jellyfin-ffmpeg
+    fzf
+    # Rust
     rustc
-    cargo
+    rustup
     cargo-tauri
-    gitui
+    trunk
+    # Other
+    yt-dlp
+    asdf
+    taskwarrior
+    # Desktop apps
     gimp
     inkscape
+    # Languages server for helix
+    nodePackages.typescript-language-server
+    nodePackages.bash-language-server
+    dockerfile-language-server-nodejs
+    nodePackages.vscode-html-languageserver-bin
+    lua-language-server
+    marksman
+    nil
+    nodePackages.vscode-json-languageserver
+    python311Packages.python-lsp-server
+    R
+    nodePackages.vscode-css-languageserver-bin
+    nodePackages.svelte-language-server
+    yaml-language-server
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
