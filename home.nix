@@ -195,6 +195,7 @@
         . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
       fi
       alias tauri="cargo-tauri"
+      eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
   };
 }
