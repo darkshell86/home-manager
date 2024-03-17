@@ -100,5 +100,14 @@ $env.NU_PLUGIN_DIRS = [
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 
+# asdf
+$env.ASDF_DIR = (brew --prefix asdf | str trim | into string | path join 'libexec')
+source /opt/homebrew/opt/asdf/libexec/asdf.nu
+
 # Aliases
 alias tauri = cargo-tauri
+alias cat = bat
+alias grep = batgrep
+alias man = batman
+alias du = dust
+alias gitui = gitui -t ~/.config/gitui/themes/catppuccin/theme/macchiato.ron
