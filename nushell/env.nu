@@ -111,3 +111,22 @@ alias grep = batgrep
 alias man = batman
 alias du = dust
 alias gitui = gitui -t ~/.config/gitui/themes/catppuccin/theme/macchiato.ron
+
+# Def
+def stream [command] {
+    if $command == 'start' {
+       ^open $"($env.HOME)/Applications/Stream Avatars.app"
+       ^open $"($env.HOME)/Applications/keeb-overlay.app"
+       ^open /Applications/KeyCastr.app
+       ^open /Applications/EyeSpy.app
+       ^open /System/Applications/Music.app
+       sleep 10sec
+       ^open /Applications/OBS.app
+    } else if $command == 'stop' {
+        for app in [
+            "keeb-overlay" "KeyCastr" "EyeSpy" "Music" "Steam" "OBS"
+        ] {
+            osascript -e $"quit app \"($app)\"" | ignore
+        }
+    }
+}
