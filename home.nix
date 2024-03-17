@@ -198,4 +198,13 @@
       eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
   };
+  programs.zk = {
+    enable = true;
+    # More settings: https://github.com/zk-org/zk/blob/main/docs/config.md
+    settings = {
+      notebook = {
+        dir = "~/notes";
+      };
+    };
+  };
 }
