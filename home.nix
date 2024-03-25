@@ -52,6 +52,8 @@
     # Git
     gh
     gitui
+    # Dev
+    asdf-vm
     # JavaScript
     nodejs
     bun

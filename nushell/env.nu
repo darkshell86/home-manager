@@ -101,8 +101,10 @@ $env.NU_PLUGIN_DIRS = [
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 
 # asdf
-$env.ASDF_DIR = (brew --prefix asdf | str trim | into string | path join 'libexec')
-source /opt/homebrew/opt/asdf/libexec/asdf.nu
+# $env.ASDF_DIR = (brew --prefix asdf | str trim | into string | path join 'libexec')
+# source /opt/homebrew/opt/asdf/libexec/asdf.nu
+$env.ASDF_DIR = $"($env.HOME)/.nix-profile/share/asdf-vm"
+source ~/.nix-profile/share/asdf-vm/asdf.nu
 
 # Aliases
 alias tauri = cargo-tauri
