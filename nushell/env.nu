@@ -99,6 +99,10 @@ $env.NU_PLUGIN_DIRS = [
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
+$env.PATH = ($env.PATH | split row (char esep)
+  | prepend '~/.bun/bin'
+  | prepend '~/.config/composer/vendor/bin'
+  | prepend '~/.asdf/installs/golang/1.22.2/packages/bin')
 
 # asdf
 # $env.ASDF_DIR = (brew --prefix asdf | str trim | into string | path join 'libexec')
@@ -106,13 +110,33 @@ $env.NU_PLUGIN_DIRS = [
 $env.ASDF_DIR = $"($env.HOME)/.nix-profile/share/asdf-vm"
 source ~/.nix-profile/share/asdf-vm/asdf.nu
 
+# LS_COLORS
+$env.LS_COLORS = (vivid generate catppuccin-macchiato | str trim)
+
+# Wordpress ENVs
+$env.WORDPRESS_DEBUG = 1
+$env.WORDPRESS_DB_HOST = localhost:3306
+$env.WORDPRESS_CONFIG_EXTRA = "define( 'SCRIPT_DEBUG', true );"
+$env.WORDPRESS_DB_PASSWORD = wordpress
+$env.WORDPRESS_DB_USER = wordpress
+$env.WORDPRESS_DB_NAME = wordpress
+
 # Aliases
 alias tauri = cargo-tauri
 alias cat = bat
 alias grep = batgrep
+alias rgrep = batgrep --context=0
 alias man = batman
 alias du = dust
-alias gitui = gitui -t ~/.config/gitui/themes/catppuccin/theme/macchiato.ron
+alias gitui = gitui -t ~/.config/gitui/themes/catppuccin-macchiato.ron
+alias l = eza --icons
+alias ls = eza --icons
+alias f = joshuto
+alias e = hx-zellij.sh
+alias jt = bash -c 'jira issue list -abrunov@lifebit.ai --order-by "status ASC,priority" -sBacklog -sBlocked -s"To Do" -s"In Progress" -s"In Review" -s"In PR"'
+alias groot = cd (git rev-parse --show-toplevel)
+alias npm = bun
+alias node = bun
 
 # Def
 def stream [command] {
@@ -131,4 +155,15 @@ def stream [command] {
             osascript -e $"quit app \"($app)\"" | ignore
         }
     }
+}
+
+# Yazi file manager shell wrapper to change cwd when exit
+def --env yy [...args] {
+	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+	yazi ...$args --cwd-file $tmp
+	let cwd = (open $tmp)
+	if $cwd != "" and $cwd != $env.PWD {
+		cd $cwd
+	}
+	rm -fp $tmp
 }

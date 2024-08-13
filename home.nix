@@ -37,6 +37,7 @@
     htop
     # Shell
     bottom
+    vivid
     eza
     bat
     bat-extras.prettybat
@@ -69,6 +70,9 @@
     k9s
     jellyfin-ffmpeg
     fzf
+    # Go
+    gotools
+    gopls
     # Rust
     rustc
     rustup
@@ -78,10 +82,16 @@
     yt-dlp
     asdf
     taskwarrior
+    w3m
+    lynx
+    links2
+    # AI
+    # ollama
     # Desktop apps
     gimp
     inkscape
     # Languages server for helix
+    vscode-langservers-extracted
     nodePackages.typescript-language-server
     nodePackages.bash-language-server
     dockerfile-language-server-nodejs
@@ -95,6 +105,8 @@
     nodePackages.vscode-css-languageserver-bin
     nodePackages.svelte-language-server
     yaml-language-server
+    phpactor
+    php83Packages.composer
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -110,6 +122,31 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    ".config/gitui/themes/catppuccin-macchiato.ron".text = ''
+    (
+        selected_tab: Some("Reset"),
+        command_fg: Some("#cad3f5"),
+        selection_bg: Some("#5b6078"),
+        selection_fg: Some("#cad3f5"),
+        cmdbar_bg: Some("#1e2030"),
+        cmdbar_extra_lines_bg: Some("#1e2030"),
+        disabled_fg: Some("#8087a2"),
+        diff_line_add: Some("#a6da95"),
+        diff_line_delete: Some("#ed8796"),
+        diff_file_added: Some("#a6da95"),
+        diff_file_removed: Some("#ee99a0"),
+        diff_file_moved: Some("#c6a0f6"),
+        diff_file_modified: Some("#f5a97f"),
+        commit_hash: Some("#b7bdf8"),
+        commit_time: Some("#b8c0e0"),
+        commit_author: Some("#7dc4e4"),
+        danger_fg: Some("#ed8796"),
+        push_gauge_bg: Some("#8aadf4"),
+        push_gauge_fg: Some("#24273a"),
+        tag_fg: Some("#f4dbd6"),
+        branch_fg: Some("#8bd5ca")
+    )
+    '';
   };
 
   # Home Manager can also manage your environment variables through
@@ -140,6 +177,7 @@
       theme = "catppuccin_macchiato"; 
       editor = {
         line-number = "relative";
+        rulers = [120];
       };
     };
   }; 
@@ -155,6 +193,9 @@
   programs.starship = {
     enable = true;
     enableNushellIntegration = true;
+    settings = {
+      command_timeout = 1000;
+    };
   };
   programs.zellij = {
     enable = true;
@@ -181,8 +222,8 @@
       -- This is where you actually apply your config choices
       config.color_scheme = 'Catppuccin Macchiato'
       config.hide_tab_bar_if_only_one_tab = true
-      --config.window_background_opacity = 0.95
-      --config.macos_window_background_blur = 20
+      config.window_background_opacity = 0.95
+      config.macos_window_background_blur = 20
       config.window_decorations = "RESIZE"
       config.default_prog = { 'zsh', '-i', '-c', 'nu' }
 
